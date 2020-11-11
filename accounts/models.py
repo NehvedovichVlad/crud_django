@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+
+class Person(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Имя')
+    age = models.IntegerField(verbose_name='Возраст')
+    email = models.EmailField(max_length=50, blank=True)
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото', blank=True)
+    created_info = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
+    update_info = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
