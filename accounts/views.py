@@ -6,5 +6,5 @@ from accounts.models import Person
 
 def person(request):
     qs = Person.objects.all()
-    context = {'person': qs}
+    context = {'persons': qs}
     return render(request, 'accounts/person.html', context)
