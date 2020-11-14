@@ -15,8 +15,8 @@ class PersonAdmin(admin.ModelAdmin):
     save_on_top = True
 
     def get_photo(self, obj):
-        if obj.photo:
-            return mark_safe(f'<img src="{obj.photo.url}" width="65">')
+        if obj.picture:
+            return mark_safe(f'<img src="{obj.picture.url}" width="65">')
         else:
             return 'Фото не установленно'
 

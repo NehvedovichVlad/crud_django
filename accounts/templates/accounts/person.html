@@ -20,19 +20,44 @@
     </thead>
 
     {% for person in persons %}
-    <tbody>
-    <tr>
-      <th scope="row">{{ forloop.counter }}</th>
-      <td>{{ person.name }}</td>
-      <td>{{ person.age }}</td>
-      <td>{{ person.email }}</td>
-      <td>{{ person.created_info }}</td>
-      <td>{{ person.update_info }}</td>
-      <td><img src="{{ person.photo.url }}" width="65" class="mr-3" alt="..."></td>
-      <td>{{ person.is_published }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
+    <td>
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ person.name }}</td>
+        <td>{{ person.age }}</td>
+        <td>{{ person.email }}</td>
+        <td>{{ person.created_info|date:"Y.m.d H:i" }}</td>
+        <td>{{ person.update_info }}</td>
+        {% if person.picture %}
+        <td><img src="{{ person.picture.url }}" width="65" class="mr-3" alt="..."></td>
+        {% else %}
+        <p></p>
+        {% endif %}
+        <td>{{ person.is_published }}</td>
+        <td>
+          <form action="{% url 'delete_person' person.id %}" method="post">
+{% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-block" name="Confirm">Удалить</button>
+          </form>
+        </td>
+        <!-- Call to action buttons -->
+        <!--        <td>-->
+        <!--          <ul class="list-inline m-0">-->
+        <!--            <li class="list-inline-item">-->
+        <!--              <button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Add">успех<i class="fa fa-table"></i></button>-->
+        <!--            </li>-->
+        <!--            <li class="list-inline-item">-->
+        <!--              <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit">изменить<i class="fa fa-edit"></i></button>-->
+        <!--            </li>-->
+        <!--            <li class="list-inline-item">-->
+        <!--              <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete">удалить<i class="fa fa-trash"></i></button>-->
+        <!--            </li>-->
+        <!--          </ul>-->
+
+        <!--        </td>-->
+      </tr>
+      {% endfor %}
+      </tbody>
   </table>
 </div>
 {% endblock %}
