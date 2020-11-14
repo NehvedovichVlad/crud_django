@@ -37,9 +37,10 @@
         <td>
           <form action="{% url 'delete_person' person.id %}" method="post">
 {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-block" name="Confirm">Удалить</button>
+            <button type="submit" class="btn btn-sm btn-danger btn-block" name="Confirm">Удалить</button>
           </form>
         </td>
+        <td><a class="btn btn-sm btn-warning btn-block" href="{% url 'edit_person' person.pk %}">Изменить</a> </td>
         <!-- Call to action buttons -->
         <!--        <td>-->
         <!--          <ul class="list-inline m-0">-->
