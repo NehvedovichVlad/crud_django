@@ -1,0 +1,63 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Добавление новости :: {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<!--<h1>Добавление новости</h1>-->
+<form enctype="multipart/form-data" action="" method="post">
+
+
+   {% csrf_token %}
+<!--   {{ form.as_p }}-->
+   {{ form.non_field.errors }}
+   <!-------------------------------------ИМЯ------------------------------------------------>
+   <div class="form-group">
+      <label for="{{ form.name.id_for_label }}">Имя: </label>
+      {{ form.name }}
+      <div class="invalid-feedback">
+         {{ form.name.errors }}
+      </div>
+   </div>
+   <!------------------------------------ВОЗРАСТ---------------------------------------------->
+   <div class="form-group">
+      <label for="{{ form.age.id_for_label }}">Возраст: </label>
+      {{ form.age }}
+      <div class="invalid-feedback">
+         {{ form.age.errors }}
+      </div>
+   </div>
+   <!-------------------------------------E-MAIL----------------------------------------------->
+   <div class="form-group">
+      <label for="{{ form.email.id_for_label }}">E-mail: </label>
+      {{ form.email }}
+      <div class="invalid-feedback">
+         {{ form.email.errors }}
+      </div>
+   </div>
+   <!----------------------------------ОПУБЛИКОВАННО-------------------------------------------->
+   <div class="form-group">
+      <label for="{{ form.is_published.id_for_label }}">Опубликованно: </label>
+      {{ form.is_published }}
+      <div class="invalid-feedback">
+         {{ form.is_published.errors }}
+      </div>
+   </div>
+   <!--------------------------------------ФОТО------------------------------------------------>
+   <div class="form-group">
+      <label for="{{ form.photo.id_for_label }}">Фото: </label>
+      {{ form.photo }}
+          <input type="file" class="form-control-file" id="{{ form.photo.id_for_label }}">
+
+      <div class="invalid-feedback">
+         {{ form.photo.errors }}
+      </div>
+   </div>
+
+   <button type="submit" class="btn btn-primary btn-block">Изменить</button>
+</form>
+{% endblock %}
